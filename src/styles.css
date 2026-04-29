@@ -377,6 +377,22 @@ div.hovered label {
   height: 100%;
   width: auto;
   image-rendering: pixelated;
+  animation: titleSlideInAndOut 5s linear infinite;
+}
+
+@keyframes titleSlideInAndOut {
+  0% {
+    transform: translateX(400%);
+  }
+  10% {
+    transform: translateX(13%);
+  }
+  90% {
+    transform: translateX(13%);
+  }
+  100% {
+    transform: translateX(-400%);
+  }
 }
 
 .titleScreen .titlePressStart {
