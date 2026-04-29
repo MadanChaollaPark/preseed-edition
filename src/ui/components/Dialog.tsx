@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { UIEvents } from "../../constants/events";
 import { useUIStore } from "../../stores/ui";
 import { useEventsListeners } from "../../utils/events";
+import { speak } from "../../utils/voice";
 
 export const Dialog = () => {
   const { dialog, closeDialog, set } = useUIStore(
@@ -89,6 +90,18 @@ export const Dialog = () => {
       setSelectedChoice(dialog.choices[0]);
     }
   }, [dialog.choices]);
+
+  useEffect(() => {
+    if (!dialog.isOpen) return;
+    const step = dialog.steps[dialog.currentStepIndex];
+    if (!step) return;
+    const stripped = step
+      .replace(/<[^>]+>/g, " ")
+      .replace(/^[A-Z]+:\s*/, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (stripped) speak(stripped);
+  }, [dialog.isOpen, dialog.currentStepIndex, dialog.steps]);
 
   const newLineToBrWithStrip = (text: string) => {
     return text?.trim().split("\n").join("<br />");
