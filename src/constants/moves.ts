@@ -910,7 +910,7 @@ export const moves: Record<Move, MoveDetails> = {
     pp: 10,
     priority: 0,
     type: Type.Ground,
-    description: "Hits adjacent Pokemon.",
+    description: "Hits adjacent agents.",
   },
   [Move.EggBomb]: {
     accuracy: 75,
@@ -2586,7 +2586,7 @@ export const moves: Record<Move, MoveDetails> = {
     pp: 15,
     priority: 0,
     type: Type.Water,
-    description: "Hits all adjacent Pokémon.",
+    description: "Hits all adjacent agents.",
   },
   [Move.Swallow]: {
     accuracy: null,
