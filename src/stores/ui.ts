@@ -3,6 +3,7 @@ import { devtools } from "zustand/middleware";
 
 interface UIStore {
   loading: boolean;
+  showTitle: boolean;
   dialog: {
     isOpen: boolean;
     callback?: (selectedChoice?: string) => void;
@@ -18,6 +19,7 @@ interface UIStore {
     isOpen: boolean;
   };
   setLoading: (loading: boolean) => void;
+  hideTitle: () => void;
   toggleDialog: (
     content?: string,
     image?: string,
@@ -33,6 +35,7 @@ interface UIStore {
 export const useUIStore = create<UIStore>()(
   devtools((set) => ({
     loading: true,
+    showTitle: true,
     dialog: {
       isOpen: false,
       callback: undefined,
@@ -48,6 +51,7 @@ export const useUIStore = create<UIStore>()(
       isOpen: false,
     },
     setLoading: (loading) => set(() => ({ loading })),
+    hideTitle: () => set(() => ({ showTitle: false })),
     toggleDialog: (content, image, choices, callback) =>
       set((state) => ({
         dialog: {
