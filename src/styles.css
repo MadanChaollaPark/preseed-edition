@@ -327,6 +327,22 @@ div.hovered label {
 .titleScreen .titleLogo {
   max-width: 60%;
   height: auto;
+  animation: titleFalldown 3s ease-in-out;
+}
+
+@keyframes titleFalldown {
+  0% {
+    transform: translateY(-200%);
+  }
+  33% {
+    transform: translateY(-200%);
+  }
+  67% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .titleScreen .titleSubtitle {
