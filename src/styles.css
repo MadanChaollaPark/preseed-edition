@@ -351,6 +351,19 @@ div.hovered label {
   color: #f8c038;
   text-shadow: 2px 2px 0 #000;
   margin-top: -2vh;
+  animation: titleSlideIn 3s ease-in-out;
+}
+
+@keyframes titleSlideIn {
+  0% {
+    transform: translateX(200%);
+  }
+  67% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .titleScreen .titlePokemonRow {
