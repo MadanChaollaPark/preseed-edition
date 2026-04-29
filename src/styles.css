@@ -371,6 +371,14 @@ div.hovered label {
   align-items: center;
   justify-content: center;
   height: 30vh;
+  gap: 4vw;
+}
+
+.titleScreen .titlePlayer {
+  height: 100%;
+  width: auto;
+  image-rendering: pixelated;
+  transform: translateX(-13%);
 }
 
 .titleScreen .titlePokemon {

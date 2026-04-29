@@ -40,6 +40,11 @@ export const TitleScreen = () => {
           src={`assets/images/pokemons/front/${pokemonId}.png`}
           alt="pokemon"
         />
+        <img
+          className="titlePlayer"
+          src="assets/images/battle/trainer.png"
+          alt="player"
+        />
       </div>
       <div className="titlePressStart">PRESS START</div>
     </div>
