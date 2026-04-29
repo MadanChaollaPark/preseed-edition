@@ -8,10 +8,10 @@ import { useEventsListeners } from "../../utils/events";
 import { TeamMenu } from "./menus/TeamMenu";
 
 export enum Options {
-  POKEDEX = "Pokedex",
+  POKEDEX = "Agentdex",
   TEAM = "Team",
-  BAG = "Bag",
-  YOU = "You",
+  BAG = "Stack",
+  YOU = "Founder",
   SETTINGS = "Settings",
 }
 
