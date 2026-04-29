@@ -325,8 +325,17 @@ div.hovered label {
 }
 
 .titleScreen .titleLogo {
-  max-width: 60%;
-  height: auto;
+  font-family: "Pokemon", monospace;
+  font-size: 18vh;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #ffe06b 50%, #f8b13a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 24px rgba(248, 192, 56, 0.45);
+  filter: drop-shadow(4px 4px 0 #1a1a1a);
   animation: titleFalldown 3s ease-in-out;
 }
 

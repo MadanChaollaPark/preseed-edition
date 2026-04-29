@@ -31,7 +31,7 @@ export const TitleScreen = () => {
   return (
     <div className="titleScreen" onClick={hideTitle}>
       <div className="titleSection">
-        <img className="titleLogo" src="assets/images/ui/logo.png" alt="logo" />
+        <div className="titleLogo">FOUNDER</div>
         <div className="titleSubtitle">Pre-Seed Edition</div>
       </div>
       <div className="titlePokemonRow">
