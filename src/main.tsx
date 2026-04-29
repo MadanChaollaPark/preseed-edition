@@ -12,6 +12,7 @@ import { GAME_HEIGHT, GAME_WIDTH } from "./constants/game";
 
 import "./styles.css";
 import { Loading } from "./ui/components/Loading";
+import { TitleScreen } from "./ui/components/TitleScreen";
 import { useUIStore } from "./stores/ui";
 
 export const GameComponent = () => {
@@ -60,6 +61,7 @@ export const GameComponent = () => {
       {loading && <Loading />}
       <UI game={game} />
       <div id="game" />
+      <TitleScreen />
     </>
   );
 };

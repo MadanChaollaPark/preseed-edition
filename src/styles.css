@@ -297,3 +297,61 @@ div.hovered label {
 .gender-female {
   color: #f9789f;
 }
+
+.titleScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background: #000;
+  color: #fff;
+  font-family: "Pokemon", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vh 2vw;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.titleScreen .titleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.titleScreen .titleLogo {
+  max-width: 60%;
+  height: auto;
+}
+
+.titleScreen .titleSubtitle {
+  font-size: 5vh;
+  letter-spacing: 0.05em;
+  color: #f8c038;
+  text-shadow: 2px 2px 0 #000;
+  margin-top: -2vh;
+}
+
+.titleScreen .titlePokemonRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+}
+
+.titleScreen .titlePokemon {
+  height: 100%;
+  width: auto;
+  image-rendering: pixelated;
+}
+
+.titleScreen .titlePressStart {
+  font-size: 4vh;
+  color: #fff;
+  animation: blinker 0.8s steps(1, end) infinite;
+}
