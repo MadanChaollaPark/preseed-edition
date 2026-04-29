@@ -5,23 +5,23 @@ export default () => {
   const { completeScenario } = useUserDataStore.getState();
 
   openDialog({
-    content: `BLUE: Gramps! I'm fed up with waiting!`,
+    content: `BRETT: Marc! I'm fed up with waiting!`,
     callback: () => {
       openDialog({
         content: `
-          OAK: BLUE? Let me think...;
-          Oh, that's right, I told you to come! Just wait!;
-          Here, red! There are 3 POKEMON here!;
-          Haha! They are inside the POKE BALLS.;
-          When I was young I was a serious POKEMON trainer!;
-          In my old age, I have only 3 left, but you can have one!;
-          Choose!`,
+          MARC: BRETT? Let me think...;
+          Oh, right — I told you to come by the office! Just wait!;
+          Here, kid! There are 3 AGENTS here!;
+          Haha! They're inside these OFFER LETTERS.;
+          When I was young I was a serious FOUNDER too!;
+          These days I'm just a YC partner, but you can take one!;
+          Pick your co-founder!`,
         callback: () => {
           openDialog({
-            content: `BLUE: Hey! Gramps! What about me?`,
+            content: `BRETT: Hey! Marc! What about me?`,
             callback: () => {
               openDialog({
-                content: `OAK: Be patient! BLUE, you can have one too!`,
+                content: `MARC: Be patient! BRETT, you can have one too!`,
                 callback: () => {
                   completeScenario(1);
                 },
