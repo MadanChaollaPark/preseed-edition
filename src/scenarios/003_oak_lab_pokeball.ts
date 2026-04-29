@@ -25,7 +25,7 @@ export default ([pokeball], scene: WorldScene) => {
 
   if (hasCompletedScenario(3) || !hasCompletedScenario(1)) {
     return openDialog({
-      content: "It's a professor Oak's pokeball!",
+      content: "It's an offer letter from Marc!",
     });
   }
 
@@ -34,14 +34,14 @@ export default ([pokeball], scene: WorldScene) => {
   const type = pokemon.type[0].toLowerCase();
 
   openDialog({
-    content: `OAK: So! You want the ${type} Pokemon, ${pokemon.name}?`,
+    content: `MARC: So! You want the ${type} agent, ${pokemon.name}?`,
     image: `assets/images/pokemons/front/${pokemon.id}.png`,
     choices: ["Yes", "No"],
     callback: async (choice) => {
       if (choice === "Yes") {
         handlePokeball(scene, pokeball, () =>
           openDialog({
-            content: `OAK: This pokemon is really energetic!`,
+            content: `MARC: This agent is really energetic!`,
             callback: () => {
               const otherPokeballs = scene.tilemap
                 .getObjectLayer(Layers.OBJECTS)
@@ -65,7 +65,7 @@ export default ([pokeball], scene: WorldScene) => {
                     scene.gridEngine.turnTowards(Sprites.BLUE, Direction.UP);
                     await wait(200);
                     openDialog({
-                      content: "BLUE: I'll take this one, then!",
+                      content: "BRETT: I'll take this one, then!",
                       callback: () => {
                         removeObject(scene, bluePokeball);
                         useUserDataStore
