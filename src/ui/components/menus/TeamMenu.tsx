@@ -10,6 +10,7 @@ import { useUserDataStore } from "../../../stores/userData";
 import { pokemons } from "../../../constants/pokemons";
 import { IPokemon } from "../../../constants/types";
 import { Gender } from "../Gender";
+import { getRoleLabel } from "../../../constants/founderTheme";
 
 export enum Options {
   GENERAL = "general",
@@ -155,18 +156,17 @@ export const TeamMenu = ({ setSelectedOption }: TeamMenuProps) => {
       <div className="content team">
         {team?.length === 0 && (
           <div className="empty">
-            <div className="text">You don't have any pokemons yet.</div>
-            <div className="text">Go catch some!</div>
+            <div className="text">You have not caught any startup monsters yet.</div>
+            <div className="text">Go make your first catch.</div>
           </div>
         )}
 
         {teamChunks?.map((chunk) => (
-          <div className="column">
-            {chunk?.map(({ id, hp, gender }) => {
+          <div className="column" key={chunk.map(({ uniqId }) => uniqId).join("-")}>
+            {chunk?.map(({ id, hp, gender, uniqId }) => {
               const pokemon = pokemons.find((p) => p.id === id);
-
               return (
-                <div key={pokemon.id} className="entry">
+                <div key={uniqId} className="entry">
                   <img
                     src={`/assets/images/pokemons/front/${pokemon.id}.png`}
                     alt={pokemon.name}
@@ -176,6 +176,7 @@ export const TeamMenu = ({ setSelectedOption }: TeamMenuProps) => {
                     <div className="title">
                       {capitalize(pokemon.name)} <Gender gender={gender} />
                     </div>
+                    <div className="meta">{capitalize(getRoleLabel(pokemon))}</div>
                     <div className="hp-bar">
                       <div className="hp">
                         <div className="label">HP</div>
