@@ -109,7 +109,14 @@ export const useUserDataStore = create<IUserDataStore>()(
       }),
       {
         name: "userData",
+        version: 1,
         partialize: ({ character, ...rest }) => rest,
+        migrate: (persisted: any) => {
+          if (persisted && "character" in persisted) {
+            delete persisted.character;
+          }
+          return persisted;
+        },
       },
     ),
   ),
