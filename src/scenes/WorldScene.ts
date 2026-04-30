@@ -129,7 +129,8 @@ export default class WorldScene extends Scene {
   }
 
   initializePlayer() {
-    const onBicycle = useUserDataStore.getState().onBicycle;
+    const userData = useUserDataStore.getState();
+    const onBicycle = userData.onBicycle;
 
     this.player = this.add.sprite(0, 0, Sprites.PLAYER);
     this.bicycle = this.add.sprite(0, 0, Sprites.BICYCLE);
@@ -139,8 +140,24 @@ export default class WorldScene extends Scene {
       sprite.setDepth(1);
     });
 
+    this.applyCharacterTint(userData.character);
+    useUserDataStore.subscribe((state) => {
+      this.applyCharacterTint(state.character);
+    });
+
     this.currentSprite = onBicycle ? this.bicycle : this.player;
     this.speed = onBicycle ? 10 : 5;
+  }
+
+  applyCharacterTint(character?: "esther" | "joe") {
+    if (!this.player) return;
+    if (character === "esther") {
+      this.player.setTint(0xff9bc7);
+    } else if (character === "joe") {
+      this.player.setTint(0x8fc6ff);
+    } else {
+      this.player.clearTint();
+    }
   }
 
   initializeGrid(): void {
