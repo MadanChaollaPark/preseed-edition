@@ -8,7 +8,7 @@ import { Direction } from "grid-engine";
 export default (scene: WorldScene) => {
   if (!isDialogOpen()) {
     openDialog({
-      content: `OAK: Hey! Wait!\nDon't go out!`,
+      content: `MARC: Hey! Wait!\nDo not go into the market yet!`,
       callback: () => {
         const oakPhaserSprite = scene.add.sprite(0, 0, Sprites.OAK);
         oakPhaserSprite.setOrigin(0.5, 0.5);
@@ -33,9 +33,10 @@ export default (scene: WorldScene) => {
             complete: () => {
               openDialog({
                 content: `
-              It's unsafe!\nWild Pokémon live in tall grass!;
-              You need your own Pokémon for your protection.;
-              I know! Here, come with me!`,
+              Founder Town is rough when you are solo.;
+              Wild startup monsters and messy opportunities live out there!;
+              You need your first catch before you can survive the tall grass.;
+              Come with me. We are getting you an OFFER LETTER.`,
                 callback: () => {
                   scene.gridEngine.setSpeed(Sprites.PLAYER, 5);
                   scene.gridEngine.follow(Sprites.PLAYER, Sprites.OAK, {
