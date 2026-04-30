@@ -171,8 +171,8 @@ export default class WorldScene extends Scene {
   applyCharacter(character?: "esther" | "joe") {
     if (!this.player) return;
     if (character === "esther") {
-      this.player.setTexture(Sprites.PLAYER);
-      this.player.setTint(0xff5fa6);
+      this.player.setTexture(Sprites.ESTHER);
+      this.player.clearTint();
       this.nameTag?.setText("ESTHER");
       this.nameTag?.setBackgroundColor("#ff2f86cc");
     } else if (character === "joe") {
