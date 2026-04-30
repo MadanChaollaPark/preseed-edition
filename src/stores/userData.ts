@@ -4,7 +4,7 @@ import { persist, devtools } from "zustand/middleware";
 import type { Direction } from "grid-engine";
 
 import type { Maps } from "../constants/assets";
-import { IPokemon } from "../constants/types";
+import { FounderPath, IPokemon } from "../constants/types";
 import { generatePokemon } from "../utils/pokemon";
 
 export interface IPosition {
@@ -29,11 +29,14 @@ export interface ISettings {
 
 export interface IUserDataStore {
   onBicycle: boolean;
+  founderPath?: FounderPath;
   position?: IPosition;
   inventory: IInventoryObject[];
   pokemons: IPokemon[];
   settings: ISettings;
   scenariosCompleted: number[];
+  crisesResolved: number;
+  demoDayWon: boolean;
 
   update: (state: Partial<IUserDataStore>) => void;
   addObjectToInventory: (objectId: number, currentMap: Maps) => void;
@@ -54,6 +57,7 @@ export const useUserDataStore = create<IUserDataStore>()(
         },
 
         onBicycle: Boolean(false),
+        founderPath: undefined,
         inventory: [],
         pokemons: [],
         settings: {
@@ -62,11 +66,16 @@ export const useUserDataStore = create<IUserDataStore>()(
           },
         },
         scenariosCompleted: [],
+        crisesResolved: 0,
+        demoDayWon: false,
 
         addPokemon: (id: number) => {
           set((state) => ({
             ...state,
-            pokemons: [...state.pokemons, generatePokemon(id)],
+            pokemons:
+              state.pokemons.length >= 6
+                ? state.pokemons
+                : [...state.pokemons, generatePokemon(id)],
           }));
         },
 
