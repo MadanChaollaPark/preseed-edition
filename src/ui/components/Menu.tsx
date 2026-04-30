@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { UIEvents } from "../../constants/events";
 import { openDialog } from "../../utils/ui";
 import { useUIStore } from "../../stores/ui";
+import { useUserDataStore } from "../../stores/userData";
 import { SettingsMenu } from "./menus/SettingsMenu";
 import { useEventsListeners } from "../../utils/events";
 import { TeamMenu } from "./menus/TeamMenu";
 
 export enum Options {
-  POKEDEX = "Agentdex",
-  TEAM = "Team",
-  BAG = "Stack",
+  POKEDEX = "Pitchdex",
+  TEAM = "Roster",
+  BAG = "Pipeline",
   YOU = "Founder",
   SETTINGS = "Settings",
 }
@@ -22,6 +23,7 @@ export enum Direction {
 
 export const Menu = () => {
   const store = useUIStore();
+  const userDataStore = useUserDataStore();
   const options = Object.values(Options);
   const [hovered, setHovered] = useState<Options>(Options.POKEDEX);
   const [selected, setSelected] = useState<Options | undefined>();
@@ -45,9 +47,18 @@ export const Menu = () => {
 
   const selectOption = () => {
     if (store.menu.isOpen && !selected && !store.dialog.isOpen) {
-      if ([Options.POKEDEX, Options.BAG, Options.YOU].includes(hovered)) {
+      if ([Options.POKEDEX, Options.BAG].includes(hovered)) {
         return openDialog({
-          content: `This feature is not ready yet.`,
+          content: `MARC: Ship the MVP first. That screen can wait.`,
+        });
+      }
+
+      if (hovered === Options.YOU) {
+        return openDialog({
+          content: `Founder path: ${userDataStore.founderPath ?? "Undeclared"};
+          Roster size: ${userDataStore.pokemons.length}/6 startup monsters.;
+          Founder wins: ${userDataStore.crisesResolved}/3.;
+          Demo Day status: ${userDataStore.demoDayWon ? "Cleared" : "In progress"}.`,
         });
       }
 
