@@ -284,6 +284,11 @@
           "point": true,
           "properties": [
             {
+              "name": "loop_last_scenario",
+              "type": "bool",
+              "value": true
+            },
+            {
               "name": "move",
               "type": "bool",
               "value": false
