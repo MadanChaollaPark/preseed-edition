@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useUserDataStore, type FounderCharacter } from "../../stores/userData";
+import { useUIStore, type FounderCharacter } from "../../stores/ui";
 
 type CharacterCard = {
   id: FounderCharacter;
@@ -38,11 +38,13 @@ const CARDS: CharacterCard[] = [
 ];
 
 export const CharacterSelect = () => {
-  const character = useUserDataStore((s) => s.character);
-  const update = useUserDataStore((s) => s.update);
+  const character = useUIStore((s) => s.character);
+  const setCharacter = useUIStore((s) => s.setCharacter);
+  const showTitle = useUIStore((s) => s.showTitle);
   const [hovered, setHovered] = useState<FounderCharacter>("esther");
 
   useEffect(() => {
+    if (showTitle || character) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
         e.preventDefault();
@@ -50,14 +52,14 @@ export const CharacterSelect = () => {
       }
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        update({ character: hovered });
+        setCharacter(hovered);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [hovered, update]);
+  }, [hovered, setCharacter, showTitle, character]);
 
-  if (character) return null;
+  if (showTitle || character) return null;
 
   return (
     <div className="characterSelect">
@@ -89,7 +91,7 @@ export const CharacterSelect = () => {
                 }
                 onMouseEnter={() => setHovered(card.id)}
                 onFocus={() => setHovered(card.id)}
-                onClick={() => update({ character: card.id })}
+                onClick={() => setCharacter(card.id)}
               >
                 <div className="characterCard__badge">{card.badge}</div>
                 <div className="characterCard__portrait">

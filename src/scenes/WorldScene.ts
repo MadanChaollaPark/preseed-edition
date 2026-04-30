@@ -162,8 +162,8 @@ export default class WorldScene extends Scene {
     this.nameTag.setOrigin(0.5, 1);
     this.nameTag.setDepth(2);
 
-    this.applyCharacter(userData.character);
-    useUserDataStore.subscribe((state) => {
+    this.applyCharacter(useUIStore.getState().character);
+    useUIStore.subscribe((state) => {
       this.applyCharacter(state.character);
     });
 

@@ -2,9 +2,13 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { CrisisAction } from "../constants/founderTheme";
 
+export type FounderCharacter = "esther" | "joe";
+
 interface UIStore {
   loading: boolean;
   showTitle: boolean;
+  character?: FounderCharacter;
+  setCharacter: (character: FounderCharacter) => void;
   dialog: {
     isOpen: boolean;
     callback?: (selectedChoice?: string) => void;
@@ -58,6 +62,8 @@ export const useUIStore = create<UIStore>()(
   devtools((set) => ({
     loading: true,
     showTitle: true,
+    character: undefined,
+    setCharacter: (character) => set(() => ({ character })),
     dialog: {
       isOpen: false,
       callback: undefined,
