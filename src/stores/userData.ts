@@ -109,6 +109,7 @@ export const useUserDataStore = create<IUserDataStore>()(
       }),
       {
         name: "userData",
+        partialize: ({ character, ...rest }) => rest,
       },
     ),
   ),
