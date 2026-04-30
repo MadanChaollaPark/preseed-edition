@@ -13,6 +13,7 @@ import { GAME_HEIGHT, GAME_WIDTH } from "./constants/game";
 import "./styles.css";
 import { Loading } from "./ui/components/Loading";
 import { TitleScreen } from "./ui/components/TitleScreen";
+import { CharacterSelect } from "./ui/components/CharacterSelect";
 import { useUIStore } from "./stores/ui";
 import { useUserDataStore } from "./stores/userData";
 
@@ -97,6 +98,7 @@ export const GameComponent = () => {
       </div>
 
       <TitleScreen />
+      <CharacterSelect />
     </div>
   );
 };
