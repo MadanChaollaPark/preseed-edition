@@ -1485,19 +1485,21 @@ div.hovered label {
 }
 
 .introVideo {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 999997;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #000;
   cursor: pointer;
 }
 
 .introVideo__player {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
   background: #000;
 }
 
