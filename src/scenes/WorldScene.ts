@@ -27,7 +27,6 @@ import {
 } from "../utils/ui";
 import { useUserDataStore } from "../stores/userData";
 import { useUIStore } from "../stores/ui";
-import { moves } from "../constants/moves";
 
 export interface WorldReceivedData {
   facingDirection: Direction;
@@ -65,7 +64,6 @@ export default class WorldScene extends Scene {
     daylightOverlay.setScrollFactor(0);
 
     this.daylightOverlay = daylightOverlay;
-    console.log(Object.keys(moves));
   }
 
   create(): void {
