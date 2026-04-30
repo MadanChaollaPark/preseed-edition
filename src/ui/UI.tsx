@@ -18,11 +18,28 @@ export const UI = ({ game }: UIBase) => {
   useUIStore();
 
   useEffect(() => {
-    const canvas = document.getElementsByTagName("canvas")?.[0];
-    setSize({
-      width: Number(canvas.style?.width.replace("px", "")) ?? canvas.width,
-      height: Number(canvas.style?.height.replace("px", "")) ?? canvas.height,
-    });
+    const syncCanvasSize = () => {
+      const canvas = document.getElementsByTagName("canvas")?.[0];
+      if (!canvas) {
+        return;
+      }
+
+      setSize({
+        width:
+          canvas.clientWidth ||
+          Number(canvas.style?.width.replace("px", "")) ||
+          canvas.width,
+        height:
+          canvas.clientHeight ||
+          Number(canvas.style?.height.replace("px", "")) ||
+          canvas.height,
+      });
+    };
+
+    syncCanvasSize();
+    const frame = window.requestAnimationFrame(syncCanvasSize);
+
+    return () => window.cancelAnimationFrame(frame);
   }, [windowSize]);
 
   return (
