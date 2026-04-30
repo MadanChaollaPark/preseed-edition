@@ -3,6 +3,7 @@ import { Scene, GameObjects } from "phaser";
 import { playClick } from "../utils/audio";
 import { useUIStore } from "../stores/ui";
 import {
+  openDialog,
   triggerUINextStep,
   triggerUIExit,
   triggerUIDown,
@@ -12,6 +13,11 @@ import {
 } from "../utils/ui";
 import { useUserDataStore } from "../stores/userData";
 import { IPokemon } from "../constants/types";
+import {
+  getEncounterTheme,
+  getFounderPathBattleCry,
+  getRoleLabel,
+} from "../constants/founderTheme";
 
 export default class BattleScene extends Scene {
   trainerBack: GameObjects.Image;
@@ -29,6 +35,10 @@ export default class BattleScene extends Scene {
   }
 
   create(): void {
+    const userData = useUserDataStore.getState();
+    const encounterTheme = getEncounterTheme(this.ennemyPokemon);
+    const founderBattleCry = getFounderPathBattleCry(userData.founderPath);
+
     this.cameras.main.fadeIn(200);
 
     // Add base images
@@ -77,7 +87,8 @@ export default class BattleScene extends Scene {
     this.ennemySprite.scaleX = this.ennemySprite.scaleY;
     this.ennemySprite.y = Number(this.game.config.height) / 3.5;
     this.ennemySprite.x = Number(this.game.config.width);
-    this.ennemySprite.tint = 0x000000;
+    this.ennemySprite.tint = 0x08101e;
+    this.ennemySprite.alpha = 0.88;
 
     const positionTransitionDelay = 1000;
 
@@ -100,13 +111,27 @@ export default class BattleScene extends Scene {
     this.add.existing(this.ennemySprite);
 
     // Display UI
+    useUIStore
+      .getState()
+      .setBattleCopy({
+        title: encounterTheme.crisis,
+        summary: encounterTheme.summary,
+        hint: encounterTheme.hint,
+        encounterPokemonId: this.ennemyPokemon.id,
+        encounterPokemonName: this.ennemyPokemon.name,
+        encounterRole: getRoleLabel(this.ennemyPokemon),
+        recommendedAction: encounterTheme.recommendedAction,
+        successCopy: encounterTheme.success,
+        failureCopy: encounterTheme.failure,
+      });
     useUIStore.getState().toggleBattle();
 
     // When sliding is done, show ennemy
     this.time.delayedCall(positionTransitionDelay, () => {
       if (this.ennemySprite) {
         this.ennemySprite.setDepth(99);
-        this.ennemySprite.tint = 0xffffff;
+        this.ennemySprite.setTint(0x08101e);
+        this.ennemySprite.setAlpha(0.88);
 
         const circle = new Phaser.Geom.Circle(
           this.ennemySprite.x - 15,
@@ -178,7 +203,6 @@ export default class BattleScene extends Scene {
     });
 
     // Pokemon from pokeball appears
-    const userData = useUserDataStore.getState();
     const firstPokemonInTeam = userData.pokemons?.[0]?.id;
 
     this.pokemonFromTeam = this.add.image(
@@ -202,6 +226,13 @@ export default class BattleScene extends Scene {
     });
 
     this.time.delayedCall(pokemonFromTeamAppearsDelay, () => {
+      openDialog({
+        content: `ANNOUNCER: Live signal detected. ${encounterTheme.crisis} is now on deck.;
+        ${encounterTheme.summary};
+        ${founderBattleCry};
+        ${encounterTheme.hint};
+        Choose Pitch Deck, Ship Sprint, Offer Letter, or Retreat.`,
+      });
       this.listenKeyboardControl();
     });
   }
