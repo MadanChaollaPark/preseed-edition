@@ -5,23 +5,23 @@ export default () => {
   const { completeScenario } = useUserDataStore.getState();
 
   openDialog({
-    content: `BRETT: Marc! I'm fed up with waiting!`,
+    content: `BRETT: Marc! I am done waiting around!`,
     callback: () => {
       openDialog({
         content: `
-          MARC: BRETT? Let me think...;
-          Oh, right — I told you to come by the office! Just wait!;
-          Here, kid! There are 3 AGENTS here!;
-          Haha! They're inside these OFFER LETTERS.;
-          When I was young I was a serious FOUNDER too!;
-          These days I'm just a YC partner, but you can take one!;
-          Pick your co-founder!`,
+          MARC: BRETT, relax. I told both of you to meet me at the accelerator.;
+          Every founder starts with one great catch.;
+          Inside these OFFER LETTERS are three rare startup monsters.;
+          Catch the right one, and you might just survive Founder Town long enough to make Demo Day.;
+          Some founders bootstrap. Some raise too fast. Some just out-execute everyone.;
+          Your first catch decides the kind of company you become.;
+          Go on. Pick your monster.`,
         callback: () => {
           openDialog({
-            content: `BRETT: Hey! Marc! What about me?`,
+            content: `BRETT: Hey! I was here first. Why does this founder get first pick?`,
             callback: () => {
               openDialog({
-                content: `MARC: Be patient! BRETT, you can have one too!`,
+                content: `MARC: Because patience is also part of the game, BRETT. You will get your catch.`,
                 callback: () => {
                   completeScenario(1);
                 },
