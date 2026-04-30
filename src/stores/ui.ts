@@ -9,6 +9,8 @@ interface UIStore {
   showTitle: boolean;
   character?: FounderCharacter;
   setCharacter: (character: FounderCharacter) => void;
+  introPlayed: boolean;
+  markIntroPlayed: () => void;
   dialog: {
     isOpen: boolean;
     callback?: (selectedChoice?: string) => void;
@@ -64,6 +66,8 @@ export const useUIStore = create<UIStore>()(
     showTitle: true,
     character: undefined,
     setCharacter: (character) => set(() => ({ character })),
+    introPlayed: false,
+    markIntroPlayed: () => set(() => ({ introPlayed: true })),
     dialog: {
       isOpen: false,
       callback: undefined,

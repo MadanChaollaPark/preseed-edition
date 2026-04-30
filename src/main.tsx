@@ -14,6 +14,7 @@ import "./styles.css";
 import { Loading } from "./ui/components/Loading";
 import { TitleScreen } from "./ui/components/TitleScreen";
 import { CharacterSelect } from "./ui/components/CharacterSelect";
+import { IntroVideo } from "./ui/components/IntroVideo";
 import { useUIStore } from "./stores/ui";
 import { useUserDataStore } from "./stores/userData";
 
@@ -99,6 +100,7 @@ export const GameComponent = () => {
 
       <TitleScreen />
       <CharacterSelect />
+      <IntroVideo />
     </div>
   );
 };
