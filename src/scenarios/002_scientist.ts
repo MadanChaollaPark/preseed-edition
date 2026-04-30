@@ -11,21 +11,20 @@ export default ([npc], scene: WorldScene) => {
   const hasPokemon = !!useUserDataStore.getState().pokemons?.length;
 
   if (!hasPokemon) {
-    // Scientist tells you to go see Marc if you don't have an agent yet
     openDialog({
       content: `
-        You haven't recruited an AGENT yet, right?;
-        This is a great opportunity to get one!;
-        Go see Marc at YC! He's onboarding new founders today!
+        You do not have a catch yet, right?;
+        Then do not head into the market alone.;
+        Go see Marc at the accelerator. He is handing out starter OFFER LETTERS today!
       `,
       callback: () => moveRandomly(scene.gridEngine, name),
     });
   } else {
-    // Scientist congratulates you for having an agent and wishes you good luck
     openDialog({
       content: `
-        Oh, I like your AGENT!;
-        I hope you become a great FOUNDER!
+        Nice catch.;
+        A founder is only as good as the monsters they can rally.;
+        Good luck making it to Demo Day!
       `,
       callback: () => moveRandomly(scene.gridEngine, name),
     });
