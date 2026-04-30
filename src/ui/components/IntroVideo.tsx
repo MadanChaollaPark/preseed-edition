@@ -19,6 +19,10 @@ export const IntroVideo = () => {
         playsInline
         onEnded={markIntroPlayed}
       />
+      <div className="introVideo__caption">
+        <span className="introVideo__captionLabel">Message from your investor</span>
+        <span className="introVideo__captionName">Garry Tan · Y Combinator</span>
+      </div>
       <button
         type="button"
         className="introVideo__skip"
