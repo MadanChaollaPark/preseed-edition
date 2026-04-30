@@ -481,10 +481,28 @@ img {
   line-height: 1.8;
 }
 
+#ui .menu ul li,
+#ui .menu .submenu ul li {
+  position: relative;
+  padding: 4px 14px 4px 28px;
+  border-radius: 8px;
+  transition: background 0.08s ease, color 0.08s ease;
+}
+
 #ui .menu ul li.hovered,
 #ui .menu .submenu ul li.hovered,
 div.hovered label {
-  color: #fff4d0;
+  color: #1a120a;
+  background: #ffd66f;
+  font-weight: 700;
+}
+
+#ui .menu ul li.hovered::before,
+#ui .menu .submenu ul li.hovered::before {
+  content: "▶";
+  position: absolute;
+  left: 8px;
+  color: #1a120a;
 }
 
 #ui .menu.full {
