@@ -27,9 +27,12 @@ export interface ISettings {
   };
 }
 
+export type FounderCharacter = "esther" | "joe";
+
 export interface IUserDataStore {
   onBicycle: boolean;
   founderPath?: FounderPath;
+  character?: FounderCharacter;
   position?: IPosition;
   inventory: IInventoryObject[];
   pokemons: IPokemon[];
@@ -58,6 +61,7 @@ export const useUserDataStore = create<IUserDataStore>()(
 
         onBicycle: Boolean(false),
         founderPath: undefined,
+        character: undefined,
         inventory: [],
         pokemons: [],
         settings: {
