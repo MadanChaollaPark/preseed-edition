@@ -27,7 +27,7 @@ export default ([pokeball], scene: WorldScene) => {
 
   if (hasCompletedScenario(3) || !hasCompletedScenario(1)) {
     return openDialog({
-      content: "It's an offer letter from Marc!",
+      content: "It's an offer letter from PG!",
     });
   }
 
@@ -36,7 +36,7 @@ export default ([pokeball], scene: WorldScene) => {
   const starterTheme = getStarterTheme(pokemon.id);
 
   openDialog({
-    content: `MARC: So. You want to catch ${pokemon.name}, the ${starterTheme.title}?`,
+    content: `PG: So. You want to catch ${pokemon.name}, the ${starterTheme.title}?`,
     image: `assets/images/pokemons/front/${pokemon.id}.png`,
     choices: ["Yes", "No"],
     callback: async (choice) => {
@@ -47,7 +47,7 @@ export default ([pokeball], scene: WorldScene) => {
 
         handlePokeball(scene, pokeball, () =>
           openDialog({
-            content: `MARC: Smart catch.;
+            content: `PG: Smart catch.;
             ${starterTheme.pitch};
             ${starterTheme.followUp}`,
             callback: () => {

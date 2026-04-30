@@ -53,7 +53,7 @@ export const Battle = ({ game }: UIBase) => {
       content: `ANNOUNCER: ${message};
       ${
         demoDayWon
-          ? "MARC: That is three real founder wins. Your roster is ready and Demo Day is yours.;JUDGE: Clear story. Real traction. You earned your spot.;ANNOUNCER: Founder Red cleared Demo Day!"
+          ? "PG: That is three real founder wins. Your roster is ready and Demo Day is yours.;JUDGE: Clear story. Real traction. You earned your spot.;ANNOUNCER: Founder Red cleared Demo Day!"
           : `ANNOUNCER: Crisis cleared. ${nextResolvedCount} of 3 founder wins secured.`
       }`,
       callback: () => {
@@ -82,7 +82,7 @@ export const Battle = ({ game }: UIBase) => {
       if (userData.pokemons.length >= 6) {
         openDialog({
           content:
-            "MARC: Your roster is full.;Make room before you try to catch another startup monster.",
+            "PG: Your roster is full.;Make room before you try to catch another startup monster.",
         });
         return;
       }

@@ -13,8 +13,8 @@ const speakerProfiles: Record<
   string,
   { avatar: string; title: string; channel: string; tone: string }
 > = {
-  MARC: {
-    avatar: "M",
+  PG: {
+    avatar: "P",
     title: "Mentor",
     channel: "#mentor-dm",
     tone: "mentor",

@@ -49,7 +49,7 @@ export const Menu = () => {
     if (store.menu.isOpen && !selected && !store.dialog.isOpen) {
       if ([Options.POKEDEX, Options.BAG].includes(hovered)) {
         return openDialog({
-          content: `MARC: Ship the MVP first. That screen can wait.`,
+          content: `PG: Ship the MVP first. That screen can wait.`,
         });
       }
 

@@ -8,7 +8,7 @@ import { Direction } from "grid-engine";
 export default (scene: WorldScene) => {
   if (!isDialogOpen()) {
     openDialog({
-      content: `MARC: Hey! Wait!\nDo not go into the market yet!`,
+      content: `PG: Hey! Wait!\nDo not go into the market yet!`,
       callback: () => {
         const oakPhaserSprite = scene.add.sprite(0, 0, Sprites.OAK);
         oakPhaserSprite.setOrigin(0.5, 0.5);

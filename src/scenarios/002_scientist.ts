@@ -15,7 +15,7 @@ export default ([npc], scene: WorldScene) => {
       content: `
         You do not have a catch yet, right?;
         Then do not head into the market alone.;
-        Go see Marc at the accelerator. He is handing out starter OFFER LETTERS today!
+        Go see PG at the accelerator. He is handing out starter OFFER LETTERS today!
       `,
       callback: () => moveRandomly(scene.gridEngine, name),
     });

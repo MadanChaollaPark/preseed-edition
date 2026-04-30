@@ -1,8 +1,8 @@
 const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
 const defaultVoiceId =
   import.meta.env.VITE_ELEVENLABS_VOICE_ID ?? "21m00Tcm4TlvDq8ikWAM";
-const marcVoiceId =
-  import.meta.env.VITE_ELEVENLABS_VOICE_MARC ?? defaultVoiceId;
+const pgVoiceId =
+  import.meta.env.VITE_ELEVENLABS_VOICE_PG ?? defaultVoiceId;
 const brettVoiceId =
   import.meta.env.VITE_ELEVENLABS_VOICE_BRETT ?? "TxGEqnHWrfWFTfGW9XjX";
 const announcerVoiceId =
@@ -16,8 +16,8 @@ export const isVoiceEnabled = () => Boolean(apiKey);
 
 export const getVoiceIdForSpeaker = (speaker?: string) => {
   switch (speaker?.trim().toUpperCase()) {
-    case "MARC":
-      return marcVoiceId;
+    case "PG":
+      return pgVoiceId;
     case "BRETT":
       return brettVoiceId;
     case "ANNOUNCER":
