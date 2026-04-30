@@ -100,10 +100,7 @@ export default class WorldScene extends Scene {
 
   updateNameTagPosition(): void {
     if (!this.nameTag || !this.currentSprite) return;
-    this.nameTag.setPosition(
-      this.currentSprite.x,
-      this.currentSprite.y - this.currentSprite.displayHeight / 2 - 2,
-    );
+    this.nameTag.setPosition(this.currentSprite.x, this.currentSprite.y - 20);
   }
 
   initializeTilemap(): void {
