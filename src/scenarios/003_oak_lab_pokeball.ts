@@ -8,6 +8,8 @@ import {
 } from "../utils/object";
 import { openDialog } from "../utils/ui";
 import { pokemons } from "../constants/pokemons";
+import { getStarterTheme } from "../constants/founderTheme";
+import { FounderPath } from "../constants/types";
 
 import { Layers, Objects, Sprites } from "../constants/assets";
 import { Direction } from "grid-engine";
@@ -31,17 +33,23 @@ export default ([pokeball], scene: WorldScene) => {
 
   const pokemon_inside_id = getTiledObjectProperty("pokemon_inside", pokeball);
   const pokemon = pokemons.find(({ id }) => id === Number(pokemon_inside_id));
-  const type = pokemon.type[0].toLowerCase();
+  const starterTheme = getStarterTheme(pokemon.id);
 
   openDialog({
-    content: `MARC: So! You want the ${type} agent, ${pokemon.name}?`,
+    content: `MARC: So. You want to catch ${pokemon.name}, the ${starterTheme.title}?`,
     image: `assets/images/pokemons/front/${pokemon.id}.png`,
     choices: ["Yes", "No"],
     callback: async (choice) => {
       if (choice === "Yes") {
+        useUserDataStore.getState().update({
+          founderPath: starterTheme.path,
+        });
+
         handlePokeball(scene, pokeball, () =>
           openDialog({
-            content: `MARC: This agent is really energetic!`,
+            content: `MARC: Smart catch.;
+            ${starterTheme.pitch};
+            ${starterTheme.followUp}`,
             callback: () => {
               const otherPokeballs = scene.tilemap
                 .getObjectLayer(Layers.OBJECTS)
@@ -64,8 +72,14 @@ export default ([pokeball], scene: WorldScene) => {
                     await wait(100);
                     scene.gridEngine.turnTowards(Sprites.BLUE, Direction.UP);
                     await wait(200);
+                    const rivalPath =
+                      starterTheme.path === FounderPath.BOOTSTRAP
+                        ? "a faster play"
+                        : starterTheme.path === FounderPath.VC
+                          ? "the disciplined path"
+                          : "the growth rocket";
                     openDialog({
-                      content: "BRETT: I'll take this one, then!",
+                      content: `BRETT: Fine. Then I am catching this one and taking ${rivalPath} to Demo Day!`,
                       callback: () => {
                         removeObject(scene, bluePokeball);
                         useUserDataStore
