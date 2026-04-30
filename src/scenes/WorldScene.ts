@@ -42,6 +42,7 @@ export default class WorldScene extends Scene {
   currentSprite: GameObjects.Sprite;
   player: GameObjects.Sprite;
   bicycle: GameObjects.Sprite;
+  nameTag: GameObjects.Text;
   speed: number;
 
   tilemap: Tilemaps.Tilemap;
@@ -84,6 +85,8 @@ export default class WorldScene extends Scene {
   }
 
   update(time): void {
+    this.updateNameTagPosition();
+
     if (isUIOpen()) {
       return;
     }
@@ -93,6 +96,14 @@ export default class WorldScene extends Scene {
     }
 
     this.listenMoves();
+  }
+
+  updateNameTagPosition(): void {
+    if (!this.nameTag || !this.currentSprite) return;
+    this.nameTag.setPosition(
+      this.currentSprite.x,
+      this.currentSprite.y - this.currentSprite.displayHeight / 2 - 2,
+    );
   }
 
   initializeTilemap(): void {
@@ -140,23 +151,42 @@ export default class WorldScene extends Scene {
       sprite.setDepth(1);
     });
 
-    this.applyCharacterTint(userData.character);
+    this.nameTag = this.add.text(0, 0, "", {
+      fontFamily: "monospace",
+      fontSize: "16px",
+      color: "#ffffff",
+      backgroundColor: "#000000cc",
+      padding: { x: 6, y: 2 },
+      align: "center",
+    });
+    this.nameTag.setOrigin(0.5, 1);
+    this.nameTag.setDepth(2);
+
+    this.applyCharacter(userData.character);
     useUserDataStore.subscribe((state) => {
-      this.applyCharacterTint(state.character);
+      this.applyCharacter(state.character);
     });
 
     this.currentSprite = onBicycle ? this.bicycle : this.player;
     this.speed = onBicycle ? 10 : 5;
   }
 
-  applyCharacterTint(character?: "esther" | "joe") {
+  applyCharacter(character?: "esther" | "joe") {
     if (!this.player) return;
     if (character === "esther") {
-      this.player.setTint(0xff9bc7);
+      this.player.setTexture(Sprites.PLAYER);
+      this.player.setTint(0xff5fa6);
+      this.nameTag?.setText("ESTHER");
+      this.nameTag?.setBackgroundColor("#ff2f86cc");
     } else if (character === "joe") {
-      this.player.setTint(0x8fc6ff);
-    } else {
+      this.player.setTexture(Sprites.BLUE);
       this.player.clearTint();
+      this.nameTag?.setText("JOE");
+      this.nameTag?.setBackgroundColor("#2f6affcc");
+    } else {
+      this.player.setTexture(Sprites.PLAYER);
+      this.player.clearTint();
+      this.nameTag?.setText("");
     }
   }
 
