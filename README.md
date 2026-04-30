@@ -1,4 +1,11 @@
-![PokéCraft Preview](https://i.ibb.co/7WMMqJj/image.png)
+# Runway — Pre-Seed Edition
+
+A voiced founder stress dream. Built for the ElevenLabs hackathon — a
+solo founder grinding pre-seed funding, with NPCs (VCs and AI agents)
+voiced through ElevenLabs TTS.
+
+Forked from [jvnm-dev/pokemon](https://github.com/jvnm-dev/pokemon)
+(React + Vite + Phaser + Bun).
 
 ## Play demo (wip)
 
